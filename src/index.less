@@ -1,0 +1,193 @@
+:root {
+  --primaryColor: #5BC0DE;
+  --secondaryColor: #eee;
+  --white: #fff;
+  --black: #000;
+  --shadow: #777;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+
+/* ----- Custom CSS ----- */
+.noBorder {
+  border-radius: 0;
+  border: 0;
+}
+.navbarCustomStyle {
+  background: linear-gradient(145deg, var(--white) 30%, var(--primaryColor) 100%);
+}
+.SignUp, .Notifications, .Friends {
+  border-left: 3px solid var(--primaryColor);
+  // border-right: 3px solid var(--secondaryColor);
+  border-bottom: 3px solid var(--secondaryColor);
+  // box-shadow: var(--white)  3px 3px, var(--primaryColor)  6px 6px;
+  // box-shadow: var(--shadow)  3px 3px;
+}
+
+.Notifications, .Friends {
+  overflow: hidden;
+  margin-bottom: 2rem;
+  .notification, .friend, .chat {
+    padding: 0 1rem;
+  }
+}
+
+.mainHeading {
+  background: linear-gradient(45deg, var(--primaryColor) 30%, var(--white) 60%, var(--white) 80%, var(--secondaryColor) 95%);
+  color: var(--white);
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+  padding: 3px 5px 5px 5px;
+  span {
+    align-self: center;
+  }
+}
+
+
+form {
+  padding-bottom: 3px;
+  margin-bottom: 5px;
+  .mainHeading {
+    margin: 0 -15px 1rem -15px;
+    span {
+      align-self: center;
+    }
+  }
+}
+
+
+
+
+
+
+// Notifications
+.notification {
+  border-right: 3px solid transparent;
+  .notification-title {
+    margin: 0;
+    // color: var(--primaryColor);
+    font-size: 1.5rem;
+  }
+  .notification-content {
+    font-size: 1.3rem;
+  }
+  .notification-date {
+    padding-top: 0.3rem;
+    color: var(--primaryColor);
+    font-size: 1rem;
+  }
+  .notification-noNotification {
+    text-align: center;
+    color: var(--primaryColor);
+    padding: 2rem 0;
+  }
+}
+.notification:hover {
+  border-right: 3px solid var(--primaryColor);
+   cursor: pointer;
+  .notification-title {
+    color: var(--primaryColor);
+  }
+}
+
+// Friends
+.friend {
+  border-right: 3px solid transparent;
+  margin-bottom: 1rem;
+  .friend-img {
+    border-radius: 50%;
+    display: inline-block;
+    height: 4rem;
+    width: 4rem;
+  }
+  .friend-name {
+    font-size: 1.3rem;
+    padding-left: 1rem;
+  }
+  .friend-status {
+    padding-top: 1.1rem;
+    color: var(--primaryColor);
+    font-size: 1rem;
+
+  }
+  .friend-noFirend {
+    text-align: center;
+    color: var(--primaryColor);
+    padding: 2rem 0;
+  }
+}
+.friend:hover {
+  border-right: 3px solid var(--primaryColor);
+  cursor: pointer;
+  .friend-name {
+    color: var(--primaryColor);
+  }
+}
+
+
+// Chat
+.Chat {
+  border-left: 3px solid var(--primaryColor);
+}
+.Chat-input {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px 8px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border: none;
+  border-left: 3px solid var(--primaryColor);
+  border-bottom: 3px solid var(--secondaryColor);
+}
+.Chat-input:focus {
+  outline: none;
+  border-bottom: 3px solid var(--primaryColor);
+}
+.Chat-input:focus .Chat:focus {
+  border-bottom: 3px solid var(--primaryColor);
+}
+.chat {
+  border-bottom: 1px solid var(--secondaryColor);
+  margin: 1rem 1rem 0 1rem;
+  .chat-message {
+    font-size: 1.3rem;
+    margin: 0;
+  }
+  .chat-date {
+    padding-top: 0.3rem;
+    color: var(--primaryColor);
+    font-size: 1rem;
+  }
+  .chat-noChat {
+    text-align: center;
+    color: var(--primaryColor);
+    padding: 2rem 0;
+  }
+}
+.chat-sender {
+  text-align: right;
+}
+.chat-sender:hover {
+  // border-left: 1px solid var(--primaryColor);
+  border-bottom: 1px solid var(--primaryColor);
+}
+
+.chat-receiver:hover {
+  // border-right: 1px solid var(--primaryColor);
+  border-bottom: 1px solid var(--primaryColor);
+}
