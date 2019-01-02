@@ -57,17 +57,17 @@ code {
   }
 }
 
-
-form {
-  padding-bottom: 3px;
-  margin-bottom: 5px;
-  .mainHeading {
-    margin: 0 -15px 1rem -15px;
-    span {
-      align-self: center;
-    }
-  }
-}
+//  SignIN will be affted check it after
+// form {
+//   padding-bottom: 3px;
+//   margin-bottom: 5px;
+//   .mainHeading {
+//     margin: 0 -15px 1rem -15px;
+//     span {
+//       align-self: center;
+//     }
+//   }
+// }
 
 
 
@@ -142,6 +142,13 @@ form {
 // Chat
 .Chat {
   border-left: 3px solid var(--primaryColor);
+  .mainHeading {
+    margin: 0;
+  }
+  .chats {
+    overflow-y: scroll;
+    height: 70vh;
+  }
 }
 .Chat-input {
   display: block;
@@ -153,12 +160,10 @@ form {
   border: none;
   border-left: 3px solid var(--primaryColor);
   border-bottom: 3px solid var(--secondaryColor);
+  background: var(--secondaryColor);
 }
 .Chat-input:focus {
   outline: none;
-  border-bottom: 3px solid var(--primaryColor);
-}
-.Chat-input:focus .Chat:focus {
   border-bottom: 3px solid var(--primaryColor);
 }
 .chat {

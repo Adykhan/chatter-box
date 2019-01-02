@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect} from 'react-router-dom';
 
 // Custom Component
 import Notifications from './Notifications';
@@ -48,7 +49,13 @@ class Dashboard extends Component {
   }
 
   render() {
-    // console.log("Props:", this.state.friends);
+    const { auth } = this.props;
+    console.log("Props:", this.props);
+
+    if(!auth.uid) {
+      return(<Redirect to='/signin' />)
+    }
+
     return(
       <section className="Dashboard">
         <div className="col-md-7">
@@ -69,8 +76,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    blah: state
+    auth: state.firebase.auth
   }
 }
 

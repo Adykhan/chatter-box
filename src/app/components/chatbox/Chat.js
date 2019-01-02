@@ -1,16 +1,17 @@
 import React from 'react';
+import moment from 'moment'
 
 
 
 const Chat = (props) => {
-  const { sender, receiver } = props.meta;
+  const { receiverId } = props.meta;
   const { chats } = props;
   const chatList = chats ? (
     chats.map(chat => {
       return(
-        <div className={sender === chat.sender ? "chat chat-sender" : "chat chat-receiver"}>
+        <div className={receiverId === chat.receiver ? "chat chat-sender" : "chat chat-receiver"} key={chat.id}>
           <p className="chat-message">{chat.message}</p>
-          <span className="chat-date">{chat.sendOn}</span>
+          <span className="chat-date">{moment(chat.date.toDate()).fromNow()}</span>
         </div>
       )
     })

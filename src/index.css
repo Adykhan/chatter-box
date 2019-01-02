@@ -52,16 +52,6 @@ code {
 .mainHeading span {
   align-self: center;
 }
-form {
-  padding-bottom: 3px;
-  margin-bottom: 5px;
-}
-form .mainHeading {
-  margin: 0 -15px 1rem -15px;
-}
-form .mainHeading span {
-  align-self: center;
-}
 .notification {
   border-right: 3px solid transparent;
 }
@@ -123,6 +113,13 @@ form .mainHeading span {
 .Chat {
   border-left: 3px solid var(--primaryColor);
 }
+.Chat .mainHeading {
+  margin: 0;
+}
+.Chat .chats {
+  overflow-y: scroll;
+  height: 70vh;
+}
 .Chat-input {
   display: block;
   width: 100%;
@@ -133,12 +130,10 @@ form .mainHeading span {
   border: none;
   border-left: 3px solid var(--primaryColor);
   border-bottom: 3px solid var(--secondaryColor);
+  background: var(--secondaryColor);
 }
 .Chat-input:focus {
   outline: none;
-  border-bottom: 3px solid var(--primaryColor);
-}
-.Chat-input:focus .Chat:focus {
   border-bottom: 3px solid var(--primaryColor);
 }
 .chat {

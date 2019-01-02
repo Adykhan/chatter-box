@@ -3,6 +3,7 @@ import { firestoreReducer } from 'redux-firestore';
 import { firebaseReducer } from 'react-redux-firebase'
 
 import authReducer from './authReducer';
+import chatReducer from './chatReducer';
 
 const init = {
 
