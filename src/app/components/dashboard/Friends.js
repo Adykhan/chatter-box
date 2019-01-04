@@ -9,7 +9,7 @@ const Friends = (props) => {
   const friendsList = friends ? (
     friends.map(friend => {
       return (
-        <div className="friend" onClick={ clickHandler } key={friend.name}>
+        <div className="friend" onClick={ clickHandler } key={friend.id}>
           <img className="friend-img" src={friend.img} alt={friend.name}/>
           <span className="friend-name">{friend.name}</span><span className="friend-status pull-right">{friend.name ? 'online' : 'offline'}</span>
         </div>

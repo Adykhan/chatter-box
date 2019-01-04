@@ -12,7 +12,8 @@ class Dashboard extends Component {
   state = {
     friends: [
       {
-        img: "/img/users/steveRogers.jpg",
+        id: 'cYTYnZ3sungpispTV7yklW81F5l2',
+        img: "/img/users/cYTYnZ3sungpispTV7yklW81F5l2.jpg",
         name: "Steve Rogers"
       },
       {
@@ -50,7 +51,7 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props;
-    console.log("Props:", this.props);
+    // console.log("Props:", this.props);
 
     if(!auth.uid) {
       return(<Redirect to='/signin' />)

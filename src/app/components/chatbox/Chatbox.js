@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { compose } from 'redux'
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom'
 import { createChat, getChats } from '../../store/actions/chatAction';
 import { firestoreConnect } from 'react-redux-firebase';
 import PropTypes from 'prop-types'
+import { isLoaded, isEmpty, withFirebase } from 'react-redux-firebase';
 
 import Chat from './Chat';
+import Chat0 from './Chat0';
 
 class Chatbox extends Component {
 
@@ -15,6 +17,7 @@ class Chatbox extends Component {
     chats: [],
     meta: {
       receiverId: this.props.match.params.uid ? this.props.match.params.uid : null,
+      senderId: this.props.auth.uid ? this.props.auth.uid : null,
       receiver: this.receiver ? this.receiver[0] : null,
       message: ''
     }
@@ -22,6 +25,9 @@ class Chatbox extends Component {
 
   static contextTypes = {
     store: PropTypes.object.isRequired
+  }
+  static propTypes = {
+    chats: PropTypes.object
   }
 
   submitHandler = (e) => {
@@ -73,9 +79,9 @@ class Chatbox extends Component {
         return chat;
       }
     }) : null;
+    console.log("props.chats: ",this.props.chats);
     console.log("tempChats: ",tempChats);
     console.log("state.chats: ",this.state.chats);
-    console.log("props.chats: ",this.props.chats);
     if(tempChats && (tempChats.length !== this.state.chats.length )) {
       this.setState({
         chats: tempChats
@@ -84,22 +90,24 @@ class Chatbox extends Component {
   }
 
   componentDidUpdate() {
-    // this.setReciver();
+    this.setReciver();
     // this.filterChats();
   }
 
   componentDidMount() {
-    const { firestore } = this.context.store;
+    // const { firestore, firebase } = this.context.store;
     // firestore.setListener({ collection: 'chats' })
-    console.log(firestore.get('chats'));
+    // console.log('IMPORTANT', this.props.firebase.watchEvent('value', 'chats'));
+    // this.props.firebase.watchEvent('value', 'todos')
 
-    firestore.setListener({ collection: 'chats', orderBy: ['date'] })
-    firestore.get('users').then(() => {
-      this.setReciver();
-      firestore.get({ collection: 'chats', orderBy: ['date']  }).then(() => {
-        this.filterChats();
-      })
-    })
+     // this.props.firebase.unWatchEvent('value', 'chats');
+    // this.props.firestore.setListener({ collection: 'chats', orderBy: ['date'] })
+    // this.props.firestore.get('users').then(() => {
+      // this.setReciver();
+      // firestore.get({ collection: 'chats', orderBy: ['date']  }).then(() => {
+      //   this.filterChats();
+      // })
+    // })
 
 
 
@@ -107,7 +115,7 @@ class Chatbox extends Component {
 
   componentWillUnmount() {
     const { firestore } = this.context.store;
-    firestore.unsetListener('chats')
+    // firestore.unsetListener('chats')
     // firebase.unsetListener({ collection: 'todos' }) // or object notation
   }
 
@@ -117,6 +125,8 @@ class Chatbox extends Component {
     if(!auth.uid) {
       return(<Redirect to='/signin' />)
     }
+
+    console.log("CHATBOX_PROPS: ", this.props);
 
     // if(this.receiver) {
     //   this.setState({
@@ -134,7 +144,7 @@ class Chatbox extends Component {
           <section className="Chat">
             <h3 className="mainHeading">{this.state.meta.receiver ? this.state.meta.receiver.firstName + ' ' + this.state.meta.receiver.lastName   : null} </h3>
             <div className='chats'>
-            <Chat meta={ this.state.meta } chats={ this.state.chats }></Chat>
+            <Chat meta={ this.state.meta } chats={ this.props.chats }></Chat>
             </div>
           </section>
           <input type="text" className="Chat-input" id="message" placeholder="Enter your thought..." onChange={ this.changeHandler }/>
