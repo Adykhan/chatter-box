@@ -22,7 +22,6 @@ const initState = {
 }
 
 const chatReducer = (state = initState, action) => {
-  console.log('in chatReducer');
   switch (action.type) {
     case 'CREATE_CHAT':
       console.log("Message send");

@@ -4,6 +4,7 @@ import { firebaseReducer } from 'react-redux-firebase'
 
 import authReducer from './authReducer';
 import chatReducer from './chatReducer';
+import userReducer from './userReducer';
 
 const init = {
 

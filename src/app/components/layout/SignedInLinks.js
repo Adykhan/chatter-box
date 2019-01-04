@@ -14,7 +14,7 @@ const SignedInLinks = ({ profile, signOut }) => {
 
   return(
     <>
-      <NavLink className="navbar-brand" to="/">Logo</NavLink>
+      <NavLink className="navbar-brand" to="/">{profile.firstName} {profile.lastName}</NavLink>
       <ul className="nav navbar-nav navbar-right">
         <li className="nav-item">
           <NavLink className="nav-link" to="/chats">Chatter Box</NavLink>

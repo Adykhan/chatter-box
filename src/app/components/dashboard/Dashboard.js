@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { Redirect} from 'react-router-dom';
+import { firestoreConnect } from 'react-redux-firebase';
 
 // Custom Component
 import Notifications from './Notifications';
@@ -12,17 +14,24 @@ class Dashboard extends Component {
   state = {
     friends: [
       {
-        id: 'cYTYnZ3sungpispTV7yklW81F5l2',
+        id: '8d5oJpbkUiXus7Fxg41JEsIpFe93',
         img: "/img/users/cYTYnZ3sungpispTV7yklW81F5l2.jpg",
         name: "Steve Rogers"
       },
       {
+        id: '8HLgB9SIcngOPdwEBXkYf0hnN4j1',
         img: "/img/users/bruceBanner.jpg",
         name: "Bruce Banner"
       },
       {
+        id: 'pMrJzUopddWyZ6G05YUcdcixbuB2',
         img: "/img/users/thor.jpg",
         name: "Thor"
+      },
+      {
+        id: 'MY4iyII8yoZ6Bdzg9yU6ZjyLtbM2',
+        img: "/img/users/pepperPotts.jpg",
+        name: "Pepper Potts"
       }
     ],
     notifications: [
@@ -51,7 +60,7 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props;
-    // console.log("Props:", this.props);
+    console.log("Props:", this.props);
 
     if(!auth.uid) {
       return(<Redirect to='/signin' />)
@@ -68,7 +77,7 @@ class Dashboard extends Component {
         <div className="col-md-5">
           <section className="Friends">
             <h3 className="mainHeading">Friends</h3>
-            <Friends friends={this.state.friends}/>
+            <Friends friends={this.props.users}/>
           </section>
         </div>
       </section>
@@ -77,10 +86,16 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log("STATE",state);
   return {
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    users: state.firestore.ordered.users
   }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    { collection: 'users' }
+  ])
+)(Dashboard);

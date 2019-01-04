@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route path='/' component={ Navbar } />
+          <Navbar />
           <div className="container">
             <div className="row">
               <Switch>

@@ -18,9 +18,9 @@ class Chatbox extends Component {
     meta: {
       receiverId: this.props.match.params.uid ? this.props.match.params.uid : null,
       senderId: this.props.auth.uid ? this.props.auth.uid : null,
-      receiver: this.receiver ? this.receiver[0] : null,
       message: ''
-    }
+    },
+    receiver: this.receiver ? this.receiver[0] : null
   }
 
   static contextTypes = {
@@ -34,12 +34,9 @@ class Chatbox extends Component {
 
     const { firestore } = this.context.store;
     e.preventDefault();
-    console.log("SUBMIT: ",this.state);
     this.props.createChat(this.state.meta);
-    // this.filterChats();
-    firestore.get({ collection: 'chats', orderBy: ['date']  }).then(() => {
-      this.filterChats();
-    })
+    document.querySelector('#message').value = ''
+    console.log('STATE:', this.state);
   }
 
   changeHandler = (e) => {
@@ -51,6 +48,7 @@ class Chatbox extends Component {
   }
 
   // --- Setting Receiver
+  /*
   setReciver = () => {
     const temp = this.props.users ? this.props.users.filter((user) => {
       if(user.id == this.state.meta.receiverId && !this.state.meta.receiver) {
@@ -65,59 +63,8 @@ class Chatbox extends Component {
         }
       }))
     }
-
-        // console.log('props: ', this.props);
-        // console.log('localstate: ',this.state);
-        // console.log('receiver: ',this.state.meta.receiver);
-        // console.log('users: ',this.props.users);
   }
-
-  // ---Filtering Chat
-  filterChats = () => {
-    const tempChats = this.props.chats ? this.props.chats.filter((chat) => {
-      if((chat.sender === this.props.auth.uid && chat.receiver === this.state.meta.receiverId) || (chat.receiver === this.props.auth.uid && chat.sender === this.state.meta.receiverId)) {
-        return chat;
-      }
-    }) : null;
-    console.log("props.chats: ",this.props.chats);
-    console.log("tempChats: ",tempChats);
-    console.log("state.chats: ",this.state.chats);
-    if(tempChats && (tempChats.length !== this.state.chats.length )) {
-      this.setState({
-        chats: tempChats
-      })
-    }
-  }
-
-  componentDidUpdate() {
-    this.setReciver();
-    // this.filterChats();
-  }
-
-  componentDidMount() {
-    // const { firestore, firebase } = this.context.store;
-    // firestore.setListener({ collection: 'chats' })
-    // console.log('IMPORTANT', this.props.firebase.watchEvent('value', 'chats'));
-    // this.props.firebase.watchEvent('value', 'todos')
-
-     // this.props.firebase.unWatchEvent('value', 'chats');
-    // this.props.firestore.setListener({ collection: 'chats', orderBy: ['date'] })
-    // this.props.firestore.get('users').then(() => {
-      // this.setReciver();
-      // firestore.get({ collection: 'chats', orderBy: ['date']  }).then(() => {
-      //   this.filterChats();
-      // })
-    // })
-
-
-
-  }
-
-  componentWillUnmount() {
-    const { firestore } = this.context.store;
-    // firestore.unsetListener('chats')
-    // firebase.unsetListener({ collection: 'todos' }) // or object notation
-  }
+  */
 
   render() {
     const { auth } = this.props;
@@ -128,23 +75,14 @@ class Chatbox extends Component {
 
     console.log("CHATBOX_PROPS: ", this.props);
 
-    // if(this.receiver) {
-    //   this.setState({
-    //     meta: {
-    //       ...this.state.meta,
-    //       receiver: this.receiver
-    //     }
-    //   })
-    // }
-
     return(
       <section className="Chatbox">
         <col-md-6>
           <form onSubmit={ this.submitHandler }>
           <section className="Chat">
-            <h3 className="mainHeading">{this.state.meta.receiver ? this.state.meta.receiver.firstName + ' ' + this.state.meta.receiver.lastName   : null} </h3>
+
             <div className='chats'>
-            <Chat meta={ this.state.meta } chats={ this.props.chats }></Chat>
+            <Chat users={ this.props.users } meta={ this.state.meta } chats={ this.props.chats }></Chat>
             </div>
           </section>
           <input type="text" className="Chat-input" id="message" placeholder="Enter your thought..." onChange={ this.changeHandler }/>
@@ -156,10 +94,11 @@ class Chatbox extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log('state from mapStateToProps: ', state);
+  console.log('state from mapStateToProps: ', state);
   // console.log('props from mapStateToProps: ', thprops);
   return {
     auth: state.firebase.auth,
+    profile: state.firebase.profile,
     users: state.firestore.ordered.users,
     chats: state.firestore.ordered.chats
   }
