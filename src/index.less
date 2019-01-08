@@ -85,7 +85,9 @@ code {
 
 // Notifications
 .notification {
+  display: block;
   border-right: 3px solid transparent;
+  text-decoration: none;
   .notification-title {
     margin: 0;
     // color: var(--primaryColor);
@@ -116,7 +118,7 @@ code {
 // Friends
 .friend {
   display: block;
-  text-decoration: none;
+  text-decoration: none !important;
   border-right: 3px solid transparent;
   margin-bottom: 1rem;
   .friend-img {
@@ -128,6 +130,7 @@ code {
   .friend-name {
     font-size: 1.3rem;
     padding-left: 1rem;
+    color: var(--primaryColor);
   }
   .friend-status {
     padding-top: 1.1rem;
@@ -136,7 +139,7 @@ code {
 
   }
   .friend-initials {
-    .initials
+    .initial;
     background: var(--primaryColor);
     color: var(--white);
 
@@ -203,7 +206,11 @@ code {
   }
 }
 .chat-sender {
+  // display: inline-block;
   text-align: right;
+}
+.chat-receiver {
+  // display: inline-block;
 }
 .chat-sender:hover {
   // border-left: 1px solid var(--primaryColor);
@@ -213,4 +220,26 @@ code {
 .chat-receiver:hover {
   // border-right: 1px solid var(--primaryColor);
   border-bottom: 1px solid var(--primaryColor);
+}
+
+
+// ---- SCROLL BAR
+/* width */
+.chats::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.chats::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.chats::-webkit-scrollbar-thumb {
+  background: var(--secondaryColor);
+}
+
+/* Handle on hover */
+.chats::-webkit-scrollbar-thumb:hover {
+  background: var(--primaryColor);
 }

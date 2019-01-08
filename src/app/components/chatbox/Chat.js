@@ -32,7 +32,9 @@ const Chat = (props) => {
   return(
     <>
       <h3 className="mainHeading">{receiver ? receiver.firstName + ' ' + receiver.lastName   : null} </h3>
-      { chatList }
+      <div className='chats'>
+        { chatList }
+      </div>
     </>
   )
 }

@@ -17,7 +17,7 @@ const SignedInLinks = ({ profile, signOut }) => {
       <NavLink className="navbar-brand" to="/">{profile.firstName} {profile.lastName}</NavLink>
       <ul className="nav navbar-nav navbar-right">
         <li className="nav-item">
-          <NavLink className="nav-link" to="/chats">Chatter Box</NavLink>
+          <NavLink className="nav-link" to="/">Chatter Box</NavLink>
         </li>
         <li className="nav-item">
           <a className="nav-link" to="/" onClick={ signOutHandler } >Logout</a>

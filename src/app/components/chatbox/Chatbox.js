@@ -80,10 +80,7 @@ class Chatbox extends Component {
         <col-md-6>
           <form onSubmit={ this.submitHandler }>
           <section className="Chat">
-
-            <div className='chats'>
             <Chat users={ this.props.users } meta={ this.state.meta } chats={ this.props.chats }></Chat>
-            </div>
           </section>
           <input type="text" className="Chat-input" id="message" placeholder="Enter your thought..." onChange={ this.changeHandler }/>
           </form>

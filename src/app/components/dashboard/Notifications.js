@@ -1,28 +1,65 @@
 import React from 'react';
+import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const Notifications = (props) => {
-  const { notifications } = props;
+  const { notifications, users, loggedUser } = props;
   const clickHandler = () => {
     console.log("Notification Clicked");
   }
+  const getDetailedUser = () => {
+    let temp = {};
+    for(let i in users) {
+      temp = {
+        ...temp,
+        [users[i].id] : {
+          ...users[i]
+        }
+      }
+      delete temp[users[i].id].id;
+    }
+    return temp;
+  }
+  const detailedUser = users && getDetailedUser();
 
-  const notificationList = notifications ? (
+  const notificationList = notifications && detailedUser && notifications.length ? (
     notifications.map((notification, index) => {
-      return (
-        <div className="notification" onClick={ clickHandler } key={ index }>
-          <h3 className="title notification-title">{notification.title} </h3>
-          <p className="notification-content">
-            {notification.content}
-            <span className="notification-date pull-right">{notification.date}</span>
-          </p>
-        </div>
-      )
+      console.log(!notification.receiver || notification.receiver == loggedUser);
+      if(!notification.receiver || notification.receiver == loggedUser) {
+        switch(notification.type) {
+          case 'messageCreated':
+          return(
+            <Link className="notification" to={'/chat/'+notification.user} key={ index }>
+              <h3 className="title notification-title">{detailedUser[notification.user].firstName} {detailedUser[notification.user].lastName}</h3>
+              <p className="notification-content">
+                {notification.content}
+                <span className="notification-date pull-right">{moment(notification.time.toDate()).fromNow()}</span>
+              </p>
+            </Link>
+          );
+          case 'newUserJoined':
+          return(
+            <Link className="notification" to={'/chat/'+notification.user} key={ index }>
+              <h3 className="title notification-title">{notification.user} </h3>
+              <p className="notification-content">
+                {notification.content}
+                <span className="notification-date pull-right">{moment(notification.time.toDate()).fromNow()}</span>
+              </p>
+            </Link>
+          );
+          default:
+          console.log("Notification type not defined");
+        }
+      }
     })
   ) : (
-    <div className="notification" onClick={ clickHandler }>
+    <div className="notification">
       <p className="notification-noNotification"> No Notification </p>
     </div>
   )
+
+
+    console.log("Notification:",notifications);
 
   return(
     <>

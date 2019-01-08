@@ -71,7 +71,7 @@ class Dashboard extends Component {
         <div className="col-md-7">
           <section className="Notifications">
             <h3 className="mainHeading">Notifications</h3>
-            <Notifications notifications={this.state.notifications}/>
+            <Notifications loggedUser={ this.props.auth.uid } users={ this.props.users } notifications={ this.props.notifications }/>
           </section>
         </div>
         <div className="col-md-5">
@@ -89,13 +89,15 @@ const mapStateToProps = (state) => {
   console.log("STATE",state);
   return {
     auth: state.firebase.auth,
-    users: state.firestore.ordered.users
+    users: state.firestore.ordered.users,
+    notifications: state.firestore.ordered.notifications
   }
 }
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'users' }
+    { collection: 'users' },
+    { collection: 'notifications', orderBy: ['time', 'desc'] }
   ])
 )(Dashboard);
