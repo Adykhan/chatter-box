@@ -22,7 +22,7 @@ class SignIn extends Component {
   }
 
   render() {
-    const { authError, auth } = this.props;
+    const { auth } = this.props;
 
     if(auth.uid) {
       return(<Redirect to='/' />)
@@ -52,7 +52,6 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authError: state.auth.authError,
     auth: state.firebase.auth
   }
 }

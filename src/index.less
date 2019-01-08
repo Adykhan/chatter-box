@@ -57,17 +57,26 @@ code {
   }
 }
 
-
-form {
-  padding-bottom: 3px;
-  margin-bottom: 5px;
-  .mainHeading {
-    margin: 0 -15px 1rem -15px;
-    span {
-      align-self: center;
-    }
-  }
+.initial {
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  border: 0;
+  border-radius: 50%;
 }
+
+
+//  SignIN will be affted check it after
+// form {
+//   padding-bottom: 3px;
+//   margin-bottom: 5px;
+//   .mainHeading {
+//     margin: 0 -15px 1rem -15px;
+//     span {
+//       align-self: center;
+//     }
+//   }
+// }
 
 
 
@@ -76,7 +85,9 @@ form {
 
 // Notifications
 .notification {
+  display: block;
   border-right: 3px solid transparent;
+  text-decoration: none;
   .notification-title {
     margin: 0;
     // color: var(--primaryColor);
@@ -106,6 +117,8 @@ form {
 
 // Friends
 .friend {
+  display: block;
+  text-decoration: none !important;
   border-right: 3px solid transparent;
   margin-bottom: 1rem;
   .friend-img {
@@ -117,11 +130,18 @@ form {
   .friend-name {
     font-size: 1.3rem;
     padding-left: 1rem;
+    color: var(--primaryColor);
   }
   .friend-status {
     padding-top: 1.1rem;
     color: var(--primaryColor);
     font-size: 1rem;
+
+  }
+  .friend-initials {
+    .initial;
+    background: var(--primaryColor);
+    color: var(--white);
 
   }
   .friend-noFirend {
@@ -132,6 +152,7 @@ form {
 }
 .friend:hover {
   border-right: 3px solid var(--primaryColor);
+  text-decoration: none;
   cursor: pointer;
   .friend-name {
     color: var(--primaryColor);
@@ -142,6 +163,13 @@ form {
 // Chat
 .Chat {
   border-left: 3px solid var(--primaryColor);
+  .mainHeading {
+    margin: 0;
+  }
+  .chats {
+    overflow-y: scroll;
+    height: 70vh;
+  }
 }
 .Chat-input {
   display: block;
@@ -153,12 +181,10 @@ form {
   border: none;
   border-left: 3px solid var(--primaryColor);
   border-bottom: 3px solid var(--secondaryColor);
+  background: var(--secondaryColor);
 }
 .Chat-input:focus {
   outline: none;
-  border-bottom: 3px solid var(--primaryColor);
-}
-.Chat-input:focus .Chat:focus {
   border-bottom: 3px solid var(--primaryColor);
 }
 .chat {
@@ -180,7 +206,11 @@ form {
   }
 }
 .chat-sender {
+  // display: inline-block;
   text-align: right;
+}
+.chat-receiver {
+  // display: inline-block;
 }
 .chat-sender:hover {
   // border-left: 1px solid var(--primaryColor);
@@ -190,4 +220,26 @@ form {
 .chat-receiver:hover {
   // border-right: 1px solid var(--primaryColor);
   border-bottom: 1px solid var(--primaryColor);
+}
+
+
+// ---- SCROLL BAR
+/* width */
+.chats::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.chats::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+.chats::-webkit-scrollbar-thumb {
+  background: var(--secondaryColor);
+}
+
+/* Handle on hover */
+.chats::-webkit-scrollbar-thumb:hover {
+  background: var(--primaryColor);
 }

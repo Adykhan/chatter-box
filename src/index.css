@@ -52,18 +52,17 @@ code {
 .mainHeading span {
   align-self: center;
 }
-form {
-  padding-bottom: 3px;
-  margin-bottom: 5px;
-}
-form .mainHeading {
-  margin: 0 -15px 1rem -15px;
-}
-form .mainHeading span {
-  align-self: center;
+.initial {
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  border: 0;
+  border-radius: 50%;
 }
 .notification {
+  display: block;
   border-right: 3px solid transparent;
+  text-decoration: none;
 }
 .notification .notification-title {
   margin: 0;
@@ -90,6 +89,8 @@ form .mainHeading span {
   color: var(--primaryColor);
 }
 .friend {
+  display: block;
+  text-decoration: none !important;
   border-right: 3px solid transparent;
   margin-bottom: 1rem;
 }
@@ -102,11 +103,21 @@ form .mainHeading span {
 .friend .friend-name {
   font-size: 1.3rem;
   padding-left: 1rem;
+  color: var(--primaryColor);
 }
 .friend .friend-status {
   padding-top: 1.1rem;
   color: var(--primaryColor);
   font-size: 1rem;
+}
+.friend .friend-initials {
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--primaryColor);
+  color: var(--white);
 }
 .friend .friend-noFirend {
   text-align: center;
@@ -115,6 +126,7 @@ form .mainHeading span {
 }
 .friend:hover {
   border-right: 3px solid var(--primaryColor);
+  text-decoration: none;
   cursor: pointer;
 }
 .friend:hover .friend-name {
@@ -122,6 +134,13 @@ form .mainHeading span {
 }
 .Chat {
   border-left: 3px solid var(--primaryColor);
+}
+.Chat .mainHeading {
+  margin: 0;
+}
+.Chat .chats {
+  overflow-y: scroll;
+  height: 70vh;
 }
 .Chat-input {
   display: block;
@@ -133,12 +152,10 @@ form .mainHeading span {
   border: none;
   border-left: 3px solid var(--primaryColor);
   border-bottom: 3px solid var(--secondaryColor);
+  background: var(--secondaryColor);
 }
 .Chat-input:focus {
   outline: none;
-  border-bottom: 3px solid var(--primaryColor);
-}
-.Chat-input:focus .Chat:focus {
   border-bottom: 3px solid var(--primaryColor);
 }
 .chat {
@@ -167,4 +184,20 @@ form .mainHeading span {
 }
 .chat-receiver:hover {
   border-bottom: 1px solid var(--primaryColor);
+}
+/* width */
+.chats::-webkit-scrollbar {
+  width: 3px;
+}
+/* Track */
+.chats::-webkit-scrollbar-track {
+  background: transparent;
+}
+/* Handle */
+.chats::-webkit-scrollbar-thumb {
+  background: var(--secondaryColor);
+}
+/* Handle on hover */
+.chats::-webkit-scrollbar-thumb:hover {
+  background: var(--primaryColor);
 }

@@ -1,22 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Friends = (props) => {
   const { friends } = props;
-  const clickHandler = (e) => {
-    console.log(e.target);
-  }
+
+  let imgLink = '';
 
   const friendsList = friends ? (
     friends.map(friend => {
+      imgLink = false ? (<img className="friend-img" src={friend.img} alt={friend.firstName}/>) : <button className="friend-initials">{ friend.firstName[0] }{ friend.lastName[0] }</button>;
       return (
-        <div className="friend" onClick={ clickHandler } key={friend.name}>
-          <img className="friend-img" src={friend.img} alt={friend.name}/>
-          <span className="friend-name">{friend.name}</span><span className="friend-status pull-right">{friend.name ? 'online' : 'offline'}</span>
-        </div>
+        <Link className="friend" to={'/chat/'+friend.id} key={friend.id}>
+          { imgLink }
+          <span className="friend-name">{friend.firstName} {friend.lastName}</span><span className="friend-status pull-right">{friend.status ? 'online' : 'offline'}</span>
+        </Link>
       );
     })
   ) : (
-    <div className="friend" onClick={ clickHandler }>
+    <div className="friend">
       <p className="friend-noFirend">You have no friend</p>
     </div>
   )

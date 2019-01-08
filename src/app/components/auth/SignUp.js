@@ -1,16 +1,39 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
+import { signUp } from '../../store/actions/authActions';
 
 class SignUp extends Component {
   state = {
-
+    newUser: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+    }
   }
+
   submitHandler = (e) => {
     e.preventDefault();
-    console.log("Signed Up");
+    this.props.signUp(this.state.newUser);
+  }
+  changeHandler = (e) => {
+    this.setState({
+      newUser: {
+        ...this.state.newUser,
+        [e.target.id]: e.target.value
+      }
+    });
   }
 
 
   render() {
+    const { auth } = this.props;
+    if(auth.uid) {
+      return(<Redirect to='/' />)
+    }
+
     return(
       <>
         <div className="col-md-7"></div>
@@ -18,23 +41,24 @@ class SignUp extends Component {
           <form onSubmit={ this.submitHandler } className="">
             <h3 className="mainHeading">Sign Up <span className="pull-right"></span></h3>
             <div className="form-group">
+              <label htmlFor="name">First Name: </label>
+              <input type="text" className="form-control" id="firstName" onChange={ this.changeHandler } />
+            </div>
+            <div className="form-group">
+              <label htmlFor="lastName">Last Name: </label>
+              <input type="text" className="form-control" id="lastName" onChange={ this.changeHandler } />
+            </div>
+            <div className="form-group">
               <label htmlFor="email">Email: </label>
-              <input type="email" className="form-control" id="email"/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="name">Name: </label>
-              <input type="text" className="form-control" id="name"/>
-            </div>
-            <div className="form-group">
-              <label htmlFor="mNumber">Mobile Number: </label>
-              <input type="text" className="form-control" id="mNumber"/>
+              <input type="email" className="form-control" id="email" onChange={ this.changeHandler } />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password: </label>
-              <input type="password" className="form-control" id="password"/>
+              <input type="password" className="form-control" id="password" onChange={ this.changeHandler } />
             </div>
             <button type="reset" className="btn btn-default">Reset</button>
             <button type="submit" className="btn btn-info">Submit</button>
+            <br/><br/>
           </form>
         </div>
       </>
@@ -42,4 +66,16 @@ class SignUp extends Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signUp: (newUser) => dispatch(signUp(newUser))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
