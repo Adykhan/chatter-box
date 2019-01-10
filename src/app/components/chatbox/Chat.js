@@ -8,7 +8,7 @@ import moment from 'moment'
 const Chat = (props) => {
   const { receiverId, senderId } = props.meta;
   const { chats, users } = props;
-  console.log("CHATS: ",chats);
+  // console.log("CHATS: ",chats);
   const chatList = chats && chats.map(chat => {
     if ((chat.sender === senderId && chat.receiver === receiverId) || (chat.receiver === senderId && chat.sender === receiverId)) {
       return(
@@ -22,13 +22,15 @@ const Chat = (props) => {
 
   const receiver = users && users.find(user => {
     if(receiverId === user.id) {
-      console.log('USER = ', user);
+      // console.log('USER = ', user);
       return user
     }
   })
 
+
+
   // <h3 className="mainHeading">{this.state.receiver ? this.state.receiver.firstName + ' ' + this.state.receiver.lastName   : null} </h3>
-  console.log(receiver);
+  // console.log(receiver);
   return(
     <>
       <h3 className="mainHeading">{receiver ? receiver.firstName + ' ' + receiver.lastName   : null} </h3>

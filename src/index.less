@@ -50,7 +50,7 @@ code {
   background: linear-gradient(45deg, var(--primaryColor) 30%, var(--white) 60%, var(--white) 80%, var(--secondaryColor) 95%);
   color: var(--white);
   font-size: 2rem;
-  margin: 0 0 1rem 0;
+  margin: 0;
   padding: 3px 5px 5px 5px;
   span {
     align-self: center;
@@ -81,20 +81,55 @@ code {
 
 
 
+//Adding custome scrollbar to components
+.notifications, .friends, .chats {
+  // ---- SCROLL BAR
+    /* width */
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: var(--secondaryColor);
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--primaryColor);
+    }
+}
+
+
 
 
 // Notifications
+.notifications {
+  padding-top: 1rem;
+  height: 45vh;
+  overflow-y: scroll;
+}
+a.notification {
+  text-decoration: none;
+}
 .notification {
   display: block;
   border-right: 3px solid transparent;
   text-decoration: none;
   .notification-title {
     margin: 0;
-    // color: var(--primaryColor);
+    color: var(--primaryColor);
     font-size: 1.5rem;
   }
   .notification-content {
     font-size: 1.3rem;
+    color: var(--black);
+
   }
   .notification-date {
     padding-top: 0.3rem;
@@ -115,7 +150,13 @@ code {
   }
 }
 
+
 // Friends
+.friends {
+  padding-top: 1rem;
+  height: 45vh;
+  overflow-y: scroll;
+}
 .friend {
   display: block;
   text-decoration: none !important;
@@ -221,8 +262,6 @@ code {
   // border-right: 1px solid var(--primaryColor);
   border-bottom: 1px solid var(--primaryColor);
 }
-
-
 // ---- SCROLL BAR
 /* width */
 .chats::-webkit-scrollbar {

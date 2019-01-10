@@ -24,7 +24,7 @@ const Notifications = (props) => {
 
   const notificationList = notifications && detailedUser && notifications.length ? (
     notifications.map((notification, index) => {
-      console.log(!notification.receiver || notification.receiver == loggedUser);
+      // console.log(!notification.receiver || notification.receiver == loggedUser);
       if(!notification.receiver || notification.receiver == loggedUser) {
         switch(notification.type) {
           case 'messageCreated':
@@ -59,12 +59,12 @@ const Notifications = (props) => {
   )
 
 
-    console.log("Notification:",notifications);
+    // console.log("Notification:",notifications);
 
   return(
-    <>
+    <div className="notifications">
       { notificationList }
-    </>
+    </div>
   );
 }
 

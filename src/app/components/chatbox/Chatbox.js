@@ -66,6 +66,18 @@ class Chatbox extends Component {
   }
   */
 
+  scrollToBottom = () => {
+    let chats = document.querySelector('.chats');
+    if(chats && chats.clientHeight) {
+      chats.scrollTop = chats.clientHeight;
+    }
+  }
+
+
+  componentDidUpdate() {
+    this.scrollToBottom();
+  }
+
   render() {
     const { auth } = this.props;
 
@@ -73,7 +85,7 @@ class Chatbox extends Component {
       return(<Redirect to='/signin' />)
     }
 
-    console.log("CHATBOX_PROPS: ", this.props);
+    // console.log("CHATBOX_PROPS: ", this.props);
 
     return(
       <section className="Chatbox">
@@ -91,7 +103,7 @@ class Chatbox extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state from mapStateToProps: ', state);
+  // console.log('state from mapStateToProps: ', state);
   // console.log('props from mapStateToProps: ', thprops);
   return {
     auth: state.firebase.auth,

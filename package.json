@@ -6,6 +6,7 @@
     "bootstrap": "^3.4.0",
     "firebase": "^5.7.1",
     "moment": "^2.23.0",
+    "package.json": "^2.0.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^5.1.1",

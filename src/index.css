@@ -46,7 +46,7 @@ code {
   background: linear-gradient(45deg, var(--primaryColor) 30%, var(--white) 60%, var(--white) 80%, var(--secondaryColor) 95%);
   color: var(--white);
   font-size: 2rem;
-  margin: 0 0 1rem 0;
+  margin: 0;
   padding: 3px 5px 5px 5px;
 }
 .mainHeading span {
@@ -59,6 +59,42 @@ code {
   border: 0;
   border-radius: 50%;
 }
+.notifications,
+.friends,
+.chats {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.notifications::-webkit-scrollbar,
+.friends::-webkit-scrollbar,
+.chats::-webkit-scrollbar {
+  width: 3px;
+}
+.notifications::-webkit-scrollbar-track,
+.friends::-webkit-scrollbar-track,
+.chats::-webkit-scrollbar-track {
+  background: transparent;
+}
+.notifications::-webkit-scrollbar-thumb,
+.friends::-webkit-scrollbar-thumb,
+.chats::-webkit-scrollbar-thumb {
+  background: var(--secondaryColor);
+}
+.notifications::-webkit-scrollbar-thumb:hover,
+.friends::-webkit-scrollbar-thumb:hover,
+.chats::-webkit-scrollbar-thumb:hover {
+  background: var(--primaryColor);
+}
+.notifications {
+  padding-top: 1rem;
+  height: 45vh;
+  overflow-y: scroll;
+}
+a.notification {
+  text-decoration: none;
+}
 .notification {
   display: block;
   border-right: 3px solid transparent;
@@ -66,10 +102,12 @@ code {
 }
 .notification .notification-title {
   margin: 0;
+  color: var(--primaryColor);
   font-size: 1.5rem;
 }
 .notification .notification-content {
   font-size: 1.3rem;
+  color: var(--black);
 }
 .notification .notification-date {
   padding-top: 0.3rem;
@@ -87,6 +125,11 @@ code {
 }
 .notification:hover .notification-title {
   color: var(--primaryColor);
+}
+.friends {
+  padding-top: 1rem;
+  height: 45vh;
+  overflow-y: scroll;
 }
 .friend {
   display: block;

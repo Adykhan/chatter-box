@@ -60,7 +60,7 @@ class Dashboard extends Component {
 
   render() {
     const { auth } = this.props;
-    console.log("Props:", this.props);
+    // console.log("Props:", this.props);
 
     if(!auth.uid) {
       return(<Redirect to='/signin' />)
@@ -86,7 +86,7 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("STATE",state);
+  // console.log("STATE",state);
   return {
     auth: state.firebase.auth,
     users: state.firestore.ordered.users,

@@ -24,9 +24,9 @@ const Friends = (props) => {
   )
 
   return(
-    <>
+    <div className="friends">
       { friendsList }
-    </>
+    </div>
   );
 }
 
