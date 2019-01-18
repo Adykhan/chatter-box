@@ -1,36 +1,38 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Notifications = (props) => {
   const { notifications, users, loggedUser } = props;
   const clickHandler = () => {
     console.log("Notification Clicked");
   }
-  const getDetailedUser = () => {
-    let temp = {};
-    for(let i in users) {
-      temp = {
-        ...temp,
-        [users[i].id] : {
-          ...users[i]
-        }
-      }
-      delete temp[users[i].id].id;
-    }
-    return temp;
-  }
-  const detailedUser = users && getDetailedUser();
 
-  const notificationList = notifications && detailedUser && notifications.length ? (
+  // const getDetailedUser = () => {
+  //   let temp = {};
+  //   for(let i in users) {
+  //     temp = {
+  //       ...temp,
+  //       [users[i].id] : {
+  //         ...users[i]
+  //       }
+  //     }
+  //     delete temp[users[i].id].id;
+  //   }
+  //   return temp;
+  // }
+  // const detailedUser = users && getDetailedUser();
+
+  const notificationList = notifications && users && notifications.length ? (
     notifications.map((notification, index) => {
       // console.log(!notification.receiver || notification.receiver == loggedUser);
-      if(!notification.receiver || notification.receiver == loggedUser) {
+      if(!notification.receiver || notification.receiver === loggedUser) {
         switch(notification.type) {
           case 'messageCreated':
           return(
             <Link className="notification" to={'/chat/'+notification.user} key={ index }>
-              <h3 className="title notification-title">{detailedUser[notification.user].firstName} {detailedUser[notification.user].lastName}</h3>
+              <h3 className="title notification-title">{users[notification.user].firstName} {users[notification.user].lastName}</h3>
               <p className="notification-content">
                 {notification.content}
                 <span className="notification-date pull-right">{moment(notification.time.toDate()).fromNow()}</span>
@@ -68,4 +70,12 @@ const Notifications = (props) => {
   );
 }
 
-export default Notifications;
+const mapStateToProps = (state) => {
+  console.log("%c STATE", 'color: orange', state);
+  return {
+    users: state.userReducer.users,
+    notifications: state.notificationReducer.notifications
+  }
+}
+
+export default connect(mapStateToProps)(Notifications);

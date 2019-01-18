@@ -20,17 +20,11 @@ const initState = {
 
 const userReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'GET_USER_SUCCESS':
-      console.log("action");
+    case 'UPDATE_USER':
       return {
-        ...state,
-        newUsers: action.response
-      };
-    case 'GET_USER_ERROR':
-      console.log("Users not available");
-      return state;
+        users: action.users
+      }
     default:
-      // console.log(action);
       return state;
   }
 }

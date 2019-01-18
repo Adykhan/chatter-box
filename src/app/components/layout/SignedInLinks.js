@@ -20,7 +20,7 @@ const SignedInLinks = ({ profile, signOut }) => {
           <NavLink className="nav-link" to="/">Chatter Box</NavLink>
         </li>
         <li className="nav-item">
-          <a className="nav-link" to="/" onClick={ signOutHandler } >Logout</a>
+          <a href="#" className="nav-link" to="/" onClick={ signOutHandler } >Logout</a>
         </li>
       </ul>
     </>

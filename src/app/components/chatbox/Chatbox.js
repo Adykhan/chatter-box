@@ -68,9 +68,7 @@ class Chatbox extends Component {
 
   scrollToBottom = () => {
     let chats = document.querySelector('.chats');
-    if(chats && chats.clientHeight) {
-      chats.scrollTop = chats.clientHeight;
-    }
+    chats.scrollTop = 9999999;
   }
 
 

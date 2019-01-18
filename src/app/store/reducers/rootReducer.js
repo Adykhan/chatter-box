@@ -5,13 +5,12 @@ import { firebaseReducer } from 'react-redux-firebase'
 import authReducer from './authReducer';
 import chatReducer from './chatReducer';
 import userReducer from './userReducer';
-
-const init = {
-
-}
+import notificationReducer from './notificationReducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  userReducer: userReducer,
+  notificationReducer: notificationReducer,
   firebase: firebaseReducer,
   firestore: firestoreReducer
 })
